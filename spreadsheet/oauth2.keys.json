@@ -1,0 +1,16 @@
+{
+    "web": {
+        "client_id": "50418516997-gpq3esmr4o1he7be6h307gvac9gol30a.apps.googleusercontent.com",
+        "project_id": "horizon-382811",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_secret": "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",
+        "redirect_uris": [
+            "http://localhost:3000"
+        ],
+        "javascript_origins": [
+            "http://localhost:3000"
+        ]
+    }
+}

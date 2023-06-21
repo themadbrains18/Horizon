@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+   .header_btn {
+        @apply text-[#fff] bg-[#0B09AE] border-2 border-[#4946FF] rounded-lg py-[0.75rem] px-[2.5rem] md:py-[0.938rem]
+    }
+ 
+}
+
+.code_border{
+    @apply border-[0.5px] px-2 rounded-[4px] bg-[#141b1e] mx-1;
+}
+
+code{
+    @apply text-tertiary text-[13px] md:text-[16px];
+}
+
+.container {
+    @apply max-w-[1450px] w-full px-5 mx-auto;
+  } 
+
+.border_bottom{
+    @apply border-b border-[#37474F]
+}
+
+
+.border_top{
+    @apply border-t border-[#37474F]
+}
+
+.grid_layout{
+    grid-template-columns: 330px 1fr;
+}
+.grid_comparision{
+    display: grid;
+    grid-template-columns: 100px 1fr 250px;
+}
+.grid_bitwise{
+    grid-template-columns: 200px 1fr;
+}
+.grid_dataType{
+    grid-template-columns: 100px 1fr 1fr;
+}
+.grid_150_1fr{
+  grid-template-columns: 150px 1fr;
+}
+.grid_30p_1fr{
+    grid-template-columns: 30% 1fr;
+}
+.btn{
+    @apply bg-[#4946FF] py-[14px] px-[30px] rounded-[6px]  font-lato font-medium text-white text-[18px];
+}
+
+
+/* HEADINGS */
+.large_heading{
+    @apply font-lato font-bold text-white text-[30px] md:text-[32px];
+}
+
+.sec_heading{
+    @apply font-lato font-semibold text-white text-[20px] md:text-[24px];
+}
+
+.bar_heading{
+    @apply font-lato font-medium text-white text-[20px];
+}
+
+
+/* TEXTS */
+
+/* 400-18-#B0BEC5 */
+.body_text{
+    @apply font-lato font-normal text-primary text-[16px] md:text-[18px];
+}
+
+/* 400-18-#CFD8DC */
+.main_text{
+    @apply font-lato font-normal text-secondary text-[16px] md:text-[18px];
+}
+
+/* 400-16-#90A4AE */
+.medium_text{
+    @apply font-lato font-normal text-tertiary text-[14px] md:text-[16px];
+}
+
+/* transitions */
+.transition-500{
+    @apply transition-all duration-500;
+}
