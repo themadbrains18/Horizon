@@ -3,6 +3,13 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import menuBtn from '/public/menu.svg'
 import closeBtn from '/public/Close.svg'
+import Introduction from '@/components/promise/introduction'
+import Example1 from '@/components/promise/example1'
+import PromiseChaining from '@/components/promise/promiseChaining'
+import Catch from '@/components/promise/catch'
+import Finally from '@/components/promise/finally'
+import PromisVsCallback from '@/components/promise/promisVsCallback'
+import PromiseMethod from '@/components/promise/promiseMethod'
 
 
 const Promise = () => {
@@ -20,7 +27,13 @@ const Promise = () => {
                             <TopicsBar />
                         </div>
                         <div className='w-full'>
-                          
+                          <Introduction/>
+                          <Example1/>
+                          <PromiseChaining/>
+                          <Catch/>
+                          <PromisVsCallback/>
+                          <Finally/>
+                          <PromiseMethod/>
                         </div>
                     </div>
                 </div>

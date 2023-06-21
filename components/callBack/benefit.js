@@ -7,7 +7,7 @@ const Benefit = () => {
                 <div className=''>
                     <h3 className='sec_heading mb-4'>Benefit of Callback Function</h3>
                     <p className='main_text mb-4'>The benefit of using a callback function is that you can wait for the result of a previous function call and then execute another function call.</p>
-                    <p className='main_text mb-4'>TIn this example, we are going to use the setTimeout() method to mimic the program that takes time to execute, such as data coming from the server.</p>
+                    <p className='main_text mb-4'>In this example, we are going to use the setTimeout() method to mimic the program that takes time to execute, such as data coming from the server.</p>
                     <h3 className='sec_heading mb-4'>Example: Program with setTimeout()</h3>
                     <div className='bg-light-dark p-5 mb-8'>
                         <code>

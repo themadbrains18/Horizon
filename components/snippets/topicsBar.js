@@ -244,6 +244,10 @@ const TopicsBar = () => {
         {
           "topic": "JavaScript CallBack Function",
           "topicRoute": "/javascript/callBack"
+        },
+        {
+          "topic": "JavaScript Promises",
+          "topicRoute": "/javascript/promise"
         }
       ]
     }
