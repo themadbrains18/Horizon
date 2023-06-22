@@ -231,9 +231,6 @@ const TopicsBar = () => {
         }
       ]
     },
-
-
-
     {
       "topicHeading": "JavaScript Asynchronous",
       "topics": [
@@ -256,6 +253,15 @@ const TopicsBar = () => {
         {
           "topic": "Javascript setInterval()",
           "topicRoute": "/javascript/setInterval"
+        }
+      ]
+    },
+    {
+      "topicHeading": "Miscellaneous",
+      "topics": [
+        {
+          "topic": "JavaScript JSON",
+          "topicRoute": "/javascript/JsJson"
         }
       ]
     }
