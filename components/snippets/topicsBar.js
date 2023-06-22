@@ -252,6 +252,10 @@ const TopicsBar = () => {
         {
           "topic": "Javscript async/await",
           "topicRoute": "/javascript/asyncAwait"
+        },
+        {
+          "topic": "Javascript setInterval()",
+          "topicRoute": "/javascript/setInterval"
         }
       ]
     }
