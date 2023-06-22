@@ -248,6 +248,10 @@ const TopicsBar = () => {
         {
           "topic": "JavaScript Promises",
           "topicRoute": "/javascript/promise"
+        },
+        {
+          "topic": "Javscript async/await",
+          "topicRoute": "/javascript/asyncAwait"
         }
       ]
     }
