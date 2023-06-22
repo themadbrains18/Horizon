@@ -270,11 +270,15 @@ const TopicsBar = () => {
         {
           "topic": "JavaScript this",
           "topicRoute": "/javascript/this"
+        },
+        {
+          "topic": 'JavaScript "use strict"',
+          "topicRoute": "/javascript/useStrict"
         }
       ]
     }
   ]
-
+  
   
   useEffect(()=>{
     setAciveRoute(router.pathname);
