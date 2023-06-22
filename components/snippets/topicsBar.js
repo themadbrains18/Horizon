@@ -274,6 +274,10 @@ const TopicsBar = () => {
         {
           "topic": 'JavaScript "use strict"',
           "topicRoute": "/javascript/useStrict"
+        },
+          {
+          "topic": "Iterators and Iterables",
+          "topicRoute": "/javascript/iteratorsAndIterables"
         }
       ]
     }

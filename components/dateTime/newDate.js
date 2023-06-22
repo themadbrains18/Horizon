@@ -43,7 +43,7 @@ const NewDate = () => {
                     <h2 className='sec_heading mb-6'>new Date(date string)</h2>
                     <p className='main_text mb-4'><code className='code_border'>new Date(date string)</code> creates a new date object from a date string.</p>
                     <p className='main_text mb-4'>In JavaScript, there are generally three date input formats.</p>
-                    <h2 className='sec_heading mb-6 text-[19px]'>ISO Date Formats</h2>
+                    <h2 className='sec_heading mb-6 !text-[19px]'>ISO Date Formats</h2>
                     <p className='main_text mb-4'>You can create a date object by passing ISO date formats. For example,</p>
                     <div className='bg-light-dark p-5 mb-8'>
                         <code>
