@@ -262,6 +262,10 @@ const TopicsBar = () => {
         {
           "topic": "JavaScript JSON",
           "topicRoute": "/javascript/JsJson"
+        },
+        {
+          "topic": "JavaScript Date and Time",
+          "topicRoute": "/javascript/dateTime"
         }
       ]
     }
