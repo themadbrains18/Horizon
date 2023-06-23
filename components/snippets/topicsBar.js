@@ -282,11 +282,15 @@ const TopicsBar = () => {
         {
           "topic": "JavaScript Generators",
           "topicRoute": "/javascript/generators"
+        },
+        {
+          "topic": "JavaScript Browser Debugging",
+          "topicRoute": "/javascript/browserDebugging"
         }
       ]
     }
   ]
-
+  
   
   useEffect(() => {
     setAciveRoute(router.pathname);
