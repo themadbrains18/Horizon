@@ -9,9 +9,7 @@ import Mentors from '@/components/landingpage/mentors'
 import Certify from '@/components/landingpage/certify'
 import { Faq } from '@/components/landingpage/faq'
 import PricingSection from '@/components/landingpage/pricingSection'
-import FormPopup from '@/components/snippets/formPopup'
 const inter = Inter({ subsets: ['latin'] })
-import { useState } from 'react'
 
 export default function Home({show, setShow} ) {
 
@@ -33,7 +31,6 @@ export default function Home({show, setShow} ) {
       <Certify />
       <PricingSection show={show} setShow={setShow}/>
       <Faq show={show} setShow={setShow} />
-      <FormPopup show={show} setShow={setShow} />
     </>
   )
 }

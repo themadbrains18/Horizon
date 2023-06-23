@@ -11,7 +11,7 @@ const schema = Yup.object().shape({
     course: Yup.string().required("This Field is Required."),
     name: Yup.string().min(8).max(32).required("This Field is Required."),
     email: Yup.string().email().required("This Field is Required."),
-    phone: Yup.number().required("This Field is Required."),
+    phone: Yup.string().required("This Field is Required."),
     state: Yup.string().required("This Field is Required."),
     city: Yup.string().required("This Field is Required."),
 });
@@ -54,7 +54,6 @@ const FormPopup = ({ show, setShow }) => {
                         <option className='bg-[#0B0F12]' value="SEO">SEO</option>
                         <option className='bg-[#0B0F12]' value="UI/UX">UI/UX</option>
                     </select>
-
                 </div>
                 <p className='text-white'>{errors.course?.message}</p>
 
@@ -65,31 +64,34 @@ const FormPopup = ({ show, setShow }) => {
                     </div>
                     <Image src={'/down_arrow.svg'} alt="" height={7} width={12} className=''></Image>
                 </div> */}
-
-                <div className='border-[#37474F] border-[1px] p-3 rounded-large flex justify-between mb-5 md:p-5'>
-                    <div className="relative w-full group">
-                        <input {...register("name")} type="text" id="name" className=" bg-transparent outline-none w-full text-white block appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
-                        <label htmlFor="name" className="absolute top-0 left-0  group-focus-within:-top-8' text-[#CFD8DC] bg-[#0C1012] peer-focus:text-[16px] peer-placeholder-shown:text-[1.125rem] peer-focus-text-[1.125rem] duration-300 -translate-y-[32px]  origin-[0] peer-focus:px-2 peer-placeholder-shown:px-2 px-2 peer-placeholder-shown:-translate-y-0 peer-focus:top-0 peer-focus:-translate-y-[32px] ">Your Name</label>
+                <div className='mb-5'>
+                    <div className='border-[#37474F] border-[1px] p-3 rounded-large flex justify-between  md:p-5'>
+                        <div className="relative w-full group">
+                            <input {...register("name")} type="text" id="name" className="bg-transparent outline-none w-full text-white block appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+                            <label htmlFor="name" className="absolute top-0 left-0  group-focus-within:-top-8' text-[#CFD8DC] bg-[#0C1012] peer-focus:text-[16px] peer-placeholder-shown:text-[1.125rem] peer-focus-text-[1.125rem] duration-300 -translate-y-[32px]  origin-[0] peer-focus:px-2 peer-placeholder-shown:px-2 px-2 peer-placeholder-shown:-translate-y-0 peer-focus:top-0 peer-focus:-translate-y-[32px] ">Your Name</label>
+                        </div>
                     </div>
+                    <p className='text-red-700'>{errors.name?.message}</p>
                 </div>
-                <p className='text-white'>{errors.name?.message}</p>
-
-                <div className='border-[#37474F] border-[1px] p-3 rounded-large flex justify-between mb-5 md:p-5'>
-                    <div className="relative w-full group">
-                        <input {...register("email")} type="email" id="email" className=" bg-transparent outline-none w-full text-white block appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
-                        <label htmlFor="email" className="absolute top-0 left-0  group-focus-within:-top-8' text-[#CFD8DC] bg-[#0C1012] peer-focus:text-[16px] peer-placeholder-shown:text-[1.125rem] peer-focus-text-[1.125rem] duration-300 -translate-y-[32px]  origin-[0] peer-focus:px-2 peer-placeholder-shown:px-2 px-2 peer-placeholder-shown:-translate-y-0 peer-focus:top-0 peer-focus:-translate-y-[32px] ">Email</label>
+                <div className='mb-5'>
+                    <div className='border-[#37474F] border-[1px] p-3 rounded-large flex justify-between  md:p-5'>
+                        <div className="relative w-full group">
+                            <input {...register("email")} type="email" id="email" className=" bg-transparent outline-none w-full text-white block appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+                            <label htmlFor="email" className="absolute top-0 left-0  group-focus-within:-top-8' text-[#CFD8DC] bg-[#0C1012] peer-focus:text-[16px] peer-placeholder-shown:text-[1.125rem] peer-focus-text-[1.125rem] duration-300 -translate-y-[32px]  origin-[0] peer-focus:px-2 peer-placeholder-shown:px-2 px-2 peer-placeholder-shown:-translate-y-0 peer-focus:top-0 peer-focus:-translate-y-[32px] ">Email</label>
+                        </div>
                     </div>
-                    <p className='text-white'>{errors.email?.message}</p>
+                    <p className='text-red-700'>{errors.email?.message}</p>
                 </div>
-
-                <div className='border-[#37474F] border-[1px] p-3 rounded-large flex justify-between mb-5 md:p-5'>
-                    <div className="relative w-full group">
-                        <input {...register("phone")} type="text" id="phNumber" className=" bg-transparent outline-none w-full text-white block appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
-                        <label htmlFor="phNumber" className="absolute top-0 left-0  group-focus-within:-top-8' text-[#CFD8DC] bg-[#0C1012] peer-focus:text-[16px] peer-placeholder-shown:text-[1.125rem] peer-focus-text-[1.125rem] duration-300 -translate-y-[32px]  origin-[0] peer-focus:px-2 peer-placeholder-shown:px-2 px-2 peer-placeholder-shown:-translate-y-0 peer-focus:top-0 peer-focus:-translate-y-[32px] ">Phone No.</label>
+                <div className='mb-5'>
+                    <div className='border-[#37474F] border-[1px] p-3 rounded-large flex justify-between md:p-5'>
+                        <div className="relative w-full group">
+                            <input {...register("phone")} type="number" id="phNumber" className="!bg-transparent outline-none w-full text-white block appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+                            <label htmlFor="phNumber" className="absolute top-0 left-0  group-focus-within:-top-8' text-[#CFD8DC] bg-[#0C1012] peer-focus:text-[16px] peer-placeholder-shown:text-[1.125rem] peer-focus-text-[1.125rem] duration-300 -translate-y-[32px]  origin-[0] peer-focus:px-2 peer-placeholder-shown:px-2 px-2 peer-placeholder-shown:-translate-y-0 peer-focus:top-0 peer-focus:-translate-y-[32px] ">Phone No.</label>
+                        </div>
+                        <Image src={'/phone-popup.svg'} alt="phone icon" height={7} width={12} className=''></Image>
                     </div>
-                    <Image src={'/phone-popup.svg'} alt="phone icon" height={7} width={12} className=''></Image>
+                    <p className='text-red-700'>{errors.phone?.message}</p>
                 </div>
-                <p className='text-white'>{errors.phone?.message}</p>
 
                 <div className='flex justify-between gap-5 mb-5'>
                     <div className='border-[#37474F] border-[1px] p-3 rounded-large flex justify-between mb-5 w-full md:p-5'>

@@ -7,7 +7,7 @@
 
 @layer base {
    .header_btn {
-        @apply text-[#fff] bg-[#0B09AE] border-2 border-[#4946FF] rounded-lg py-[0.75rem] px-[2.5rem] md:py-[0.938rem]
+        @apply hidden smd:block text-[#fff] bg-[#0B09AE] border-2 border-[#4946FF] rounded-lg py-[8px] px-[1rem] lg:py-[0.938rem]  lg:w-[12.5rem]
     }
  
 }
@@ -92,3 +92,15 @@ code{
 .transition-500{
     @apply transition-all duration-500;
 }
+
+.nav_bar{
+    grid-template-columns: 1fr auto 1fr;
+}
+ 
+.nav_item{
+   @apply border-b-2 border-transparent;
+}
+.nav_item:hover{
+    @apply !text-white border-b-2 border-white transition-all duration-500
+} 
+
