@@ -3,14 +3,16 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import menuBtn from '/public/menu.svg'
 import closeBtn from '/public/Close.svg'
-import Introduction from '@/components/proxies/introduction'
-import Handler from '@/components/proxies/handler'
-import ReadOnly from '@/components/proxies/readOnly'
-import Uses from '@/components/proxies/uses'
-import SideEffects from '@/components/proxies/sideEffects'
+import Introduction from '@/components/generators/introduction'
+import YieldToPauseExecution from '@/components/generators/yieldToPauseExecution'
+import MultipleYieldStatements from '@/components/generators/multipleYieldStatements'
+import PassingArgument from '@/components/generators/passingArgument'
+import ImplementingIterables from '@/components/generators/implementingIterables'
+import GeneratorsMethod from '@/components/generators/generatorsMethod'
+import GeneratorFuncWithReturn from '@/components/generators/generatorFuncWithReturn'
+import Uses from '@/components/generators/uses'
 
-    
-const Proxies = () => {
+const Generators = () => {
     const [menu, setMenu] = useState(false);
     return (
         <>
@@ -26,10 +28,13 @@ const Proxies = () => {
                         </div>
                         <div className='w-full'>
                             <Introduction />
-                            <Handler />
-                            <Uses />
-                            <ReadOnly />
-                            <SideEffects />
+                            <YieldToPauseExecution/>
+                            <MultipleYieldStatements/>
+                            <PassingArgument/>
+                            <ImplementingIterables/>
+                            <GeneratorsMethod/>
+                            <GeneratorFuncWithReturn/>
+                            <Uses/>
                         </div>
                     </div>
                 </div>
@@ -38,4 +43,4 @@ const Proxies = () => {
     )
 }
 
-export default Proxies
+export default Generators

@@ -49,12 +49,12 @@ const UserDefinedIterator = () => {
                     <h3 className='sec_heading text-[20px] mb-4'>Output</h3>
                     <div className='bg-light-dark p-5 mb-6 mt-6'>
                         <p className='medium_text'>
-                            &#123;value: "h", done: false&#125;
-                            &#123;value: "e", done: false&#125;
-                            &#123;value: "l", done: false&#125;
-                            &#123;value: "l", done: false&#125;
-                            &#123;value: "o", done: false&#125;
-                            &#123;value: undefined, done: true&#125;
+                            &#123;value: "h", done: false&#125; <br/>
+                            &#123;value: "e", done: false&#125; <br/>
+                            &#123;value: "l", done: false&#125; <br/>
+                            &#123;value: "l", done: false&#125; <br/>
+                            &#123;value: "o", done: false&#125; <br/>
+                            &#123;value: undefined, done: true&#125; <br/>
                         </p>
                     </div>
                     <p className='main_text mb-6'>In the above program, we have created our own iterator. The <code className='code_border'>displayElements()</code> function returns <code className='code_border'>value</code> and <code className='code_border'>done</code> property.</p>

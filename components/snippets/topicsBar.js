@@ -10,12 +10,12 @@ import Link from 'next/link'
 
 
 const TopicsBar = () => {
-  
+
   const ref = useRef(null);
   const [height, setHeight] = useState(0);
-  const [route,setAciveRoute] = useState();
+  const [route, setAciveRoute] = useState();
   const router = useRouter()
-  
+
   const [toggle, setToggle] = useState(0);
 
   const topicsData = [
@@ -186,47 +186,47 @@ const TopicsBar = () => {
           "topicRoute": "/javascript/jsEs6"
         },
         {
-          "topic":"JavaScript Arrow Function",
-          "topicRoute":"/javascript/arrowFunc"
+          "topic": "JavaScript Arrow Function",
+          "topicRoute": "/javascript/arrowFunc"
         },
         {
-          "topic":"JavaScript Default Parameters",
-          "topicRoute":"/javascript/defaultParameter"
+          "topic": "JavaScript Default Parameters",
+          "topicRoute": "/javascript/defaultParameter"
         },
         {
-          "topic":"JavaScript Template Literals",
-          "topicRoute":"/javascript/templateLiterals"
+          "topic": "JavaScript Template Literals",
+          "topicRoute": "/javascript/templateLiterals"
         },
         {
-          "topic":"JavaScript Spread Operator",
-          "topicRoute":"/javascript/spreadOperator"
+          "topic": "JavaScript Spread Operator",
+          "topicRoute": "/javascript/spreadOperator"
         },
         {
-          "topic":"JavaScript Map",
+          "topic": "JavaScript Map",
           "topicRoute": "/javascript/map"
         },
         {
-          "topic":"JavaScript Set",
+          "topic": "JavaScript Set",
           "topicRoute": "/javascript/set"
         },
         {
-          "topic":"Destructuring Assignment",
+          "topic": "Destructuring Assignment",
           "topicRoute": "/javascript/destructuring"
         },
         {
-          "topic":"JavaScript Classes",
+          "topic": "JavaScript Classes",
           "topicRoute": "/javascript/classes"
         },
         {
-          "topic":"JavaScript Inheritance",
+          "topic": "JavaScript Inheritance",
           "topicRoute": "/javascript/inheritance"
         },
         {
-          "topic":"JavaScript for...of ",
+          "topic": "JavaScript for...of ",
           "topicRoute": "/javascript/forOf"
         },
         {
-          "topic":"JavaScript Proxies",
+          "topic": "JavaScript Proxies",
           "topicRoute": "/javascript/proxies"
         }
       ]
@@ -275,22 +275,26 @@ const TopicsBar = () => {
           "topic": 'JavaScript "use strict"',
           "topicRoute": "/javascript/useStrict"
         },
-          {
+        {
           "topic": "Iterators and Iterables",
           "topicRoute": "/javascript/iteratorsAndIterables"
+        },
+        {
+          "topic": "JavaScript Generators",
+          "topicRoute": "/javascript/generators"
         }
       ]
     }
   ]
+
   
-  
-  useEffect(()=>{
+  useEffect(() => {
     setAciveRoute(router.pathname);
     let activeIndex = localStorage?.getItem("activeindex");
-    if(activeIndex){
+    if (activeIndex) {
       setToggle(activeIndex);
     }
-  },[]);
+  }, []);
 
 
   return (
@@ -301,27 +305,27 @@ const TopicsBar = () => {
         topicsData?.map((item, index) => {
           return (
             <Fragment key={index}>
-            <div className='border_bottom pb-1 last:pb-0 last:border-b-0 '>
-              <div className='flex justify-between items-center py-5 cursor-pointer' onClick={() =>{setToggle(index)}}>
-                <h3 className='bar_heading'>{item?.topicHeading}</h3>
-                {toggle == index ? <Image src={minusIcon} width={14} height={14} alt='plus Icon' className='transition-all' /> : <Image src={plusIcon} width={14} height={14} alt='plus Icon' className='transition-all' />}
+              <div className='border_bottom pb-1 last:pb-0 last:border-b-0 '>
+                <div className='flex justify-between items-center py-5 cursor-pointer' onClick={() => { setToggle(index) }}>
+                  <h3 className='bar_heading'>{item?.topicHeading}</h3>
+                  {toggle == index ? <Image src={minusIcon} width={14} height={14} alt='plus Icon' className='transition-all' /> : <Image src={plusIcon} width={14} height={14} alt='plus Icon' className='transition-all' />}
+                </div>
+                <div className={`transition-all overflow-hidden duration-1000 ${toggle == index ? `opacity-100  h-[${height}px] visible ` : "invisible h-0 opacity-0 "} `} ref={ref}>
+                  {
+                    item?.topics?.map((elem, ind) => {
+                      return (
+                        <Fragment key={ind}>
+                          <Link href={`${elem.topicRoute}?${item.topicHeading}`} className={`flex gap-[10px] pb-[14px] cursor-pointer`} onClick={() => { localStorage.setItem("activeindex", index) }}>
+                            <Image src={unreadCheck} width={26} height={26} alt='unread checkmark icon' className='p-[5px] rounded-full bg-light-dark' />
+                            <p className={` font-normal font-lato text-[18px] ${route === elem.topicRoute ? "text-white font-black" : "text-quartary"}`}>{elem?.topic}</p>
+                          </Link>
+                        </Fragment>
+                      )
+                    })
+                  }
+                </div>
               </div>
-              <div className={`transition-all overflow-hidden duration-1000 ${toggle == index ? `opacity-100  h-[${height}px] visible ` : "invisible h-0 opacity-0 "} `} ref={ref}>
-                {
-                  item?.topics?.map((elem, ind) => {
-                    return (
-                      <Fragment key={ind}>
-                        <Link href={`${elem.topicRoute}?${item.topicHeading}`} className={`flex gap-[10px] pb-[14px] cursor-pointer`} onClick={()=>{localStorage.setItem("activeindex",index) }}>
-                          <Image src={unreadCheck} width={26} height={26} alt='unread checkmark icon' className='p-[5px] rounded-full bg-light-dark' />
-                          <p className={` font-normal font-lato text-[18px] ${route === elem.topicRoute ? "text-white font-black":"text-quartary"}`}>{elem?.topic}</p>
-                        </Link>
-                      </Fragment>
-                    )
-                  })
-                }
-              </div>
-            </div>
-          </Fragment>
+            </Fragment>
           )
         })
       }
