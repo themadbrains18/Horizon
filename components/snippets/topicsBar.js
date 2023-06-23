@@ -286,7 +286,12 @@ const TopicsBar = () => {
         {
           "topic": "JavaScript Browser Debugging",
           "topicRoute": "/javascript/browserDebugging"
+        },
+        {
+          "topic": "Uses of JavaScript",
+          "topicRoute": "/javascript/usesOfJavascript"
         }
+
       ]
     }
   ]
