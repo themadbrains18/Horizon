@@ -19,7 +19,7 @@ const Header = ({ show, setShow }) => {
                         <Link href="/"> <Image src={'/Horizon-Logo.png'} alt="logo" className='' height={32} width={140} /></Link>
                         
                         <ul className='gap-6 hidden lg:flex'>
-                            <li className='nav_item medium_text !text-quartary'> <Link nav_link href="http://localhost:3000/javascript/getStarted"> Courses </Link></li>
+                            <li className='nav_item medium_text !text-quartary'> <Link nav_link href="/"> Courses </Link></li>
                             <li className='nav_item medium_text !text-quartary'> <Link nav_link href="/">Web Designing</Link></li>
                             <li className='nav_item medium_text !text-quartary'> <Link nav_link href="/">Web Development</Link></li>
                             <li className='nav_item medium_text !text-quartary'> <Link nav_link href="/">Mentor</Link></li>
