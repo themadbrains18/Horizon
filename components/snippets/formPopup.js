@@ -130,7 +130,7 @@ const FormPopup = ({ show, setShow }) => {
                             <select name="state" id="state" className='form-control outline-none bg-transparent text-[#CFD8DC] w-full'  {...register("state")} onChange={(e)=>onChangeState(e.target.value)}>
                                 <option className='bg-[#0B0F12]' value="">State</option>
                                 {States.map((item) => {
-                                    return <option className='bg-[#0B0F12]' value={item?.state_code}>{item?.name}</option>
+                                    return <option key={item?.state_code} className='bg-[#0B0F12]' value={item?.state_code}>{item?.name}</option>
                                 })}
 
                                 {/* <option className='bg-[#0B0F12]' value="Andhra Pradesh">Andhra Pradesh</option>
@@ -178,7 +178,7 @@ const FormPopup = ({ show, setShow }) => {
                             <select name="state" id="state" className='form-control outline-none bg-transparent text-[#CFD8DC] w-full' {...register("city")}>
                                 <option className='bg-[#0B0F12]' value="">City</option>
                                 {cities.map((item)=>{
-                                    return <option className='bg-[#0B0F12]' value={item?.name}>	{item?.name}</option>
+                                    return <option key={item?.name} className='bg-[#0B0F12]' value={item?.name}>	{item?.name}</option>
                                 }) }
                                 {/* <option className='bg-[#0B0F12]' value="Abohar">Abohar</option>
                                 <option className='bg-[#0B0F12]' value="Ludhiana">	Ludhiana</option>
