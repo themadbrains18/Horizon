@@ -48,7 +48,7 @@ const handler = nc({
         transporter
           .sendMail({
             from: `The Mad Brains`,
-            to: "surinderkumar.mdb@gmail.com",
+            to: "shama.tr.mdb@gmail.com",
             cc: "surinderkumar.mdb@gmail.com",
             bcc: "",
             subject: "Horizan Academy For Enquiry",
