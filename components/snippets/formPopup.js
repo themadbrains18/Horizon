@@ -1,10 +1,10 @@
 import React from 'react'
-import { useState } from "react";
-import Link from 'next/link'
 import Image from 'next/image'
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup'
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const schema = Yup.object().shape({
     // password: Yup.string().min(8).max(32).required("This Field is Required."),
@@ -14,7 +14,7 @@ const schema = Yup.object().shape({
     phone: Yup.string().required("This Field is Required."),
     state: Yup.string().required("This Field is Required."),
     city: Yup.string().required("This Field is Required."),
-    select: Yup.string().required()
+    // select: Yup.string().required()
 });
 
 
@@ -24,23 +24,23 @@ const FormPopup = ({ show, setShow }) => {
     });
 
     const onSubmitHandler = async (data) => {
-        console.log(data, "================sfdjksf");
         let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users`, {
             method: "POST",
             body: JSON.stringify(data)
         }).then(response => response.json())
         if (result) {
-            console.log("=sucesss");
+            toast.success('Your query successfully submited. Thanks!');
             reset();
+            setShow(!show)
         }
         else {
             console.log("===fail");
         }
-
     };
 
     return (
         <>
+            <ToastContainer />
             {show && <div className='fixed overscroll-y-none left-0 overflow-y-scroll w-screen h-screen top-0 right-0 bottom-0 scrollbar-hide bg-black opacity-70  z-[99999999] ' onClick={() => setShow(!show)} ></div>}
 
             <form onSubmit={handleSubmit(onSubmitHandler)} className={`bg-[#0C1012]  w-[90%] max-w-[48.5rem] m-auto rounded-30 p-8  fixed left-[50%] top-[5%] -translate-x-[50%] shadow-inner border-[1px] overscroll-none border-[#37474F] z-[1]  md:p-10 ${show ? "" : "hidden"} z-[999999999] `}>
@@ -158,7 +158,7 @@ const FormPopup = ({ show, setShow }) => {
                                 <option className='bg-[#0B0F12]' value="	Muktsar">	Muktsar</option>
                                 <option className='bg-[#0B0F12]' value="	Faridkot">	Faridkot</option>
                             </select>
-                            
+
 
                             {/* <Image src={'/down_arrow.svg'} alt="" height={7} width={12} className=''></Image> */}
                         </div>
