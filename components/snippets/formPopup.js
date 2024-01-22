@@ -26,6 +26,7 @@ const FormPopup = ({ show, setShow }) => {
     });
 
     const [cities, setCities] = useState([]);
+    const [disable, setDisable] = useState(false);
 
     let States = states.filter((item) => {
         return item.country_code === 'IN'
@@ -34,12 +35,13 @@ const FormPopup = ({ show, setShow }) => {
     const onSubmitHandler = async (data) => {
 
         try {
-            let state = States.filter((item)=>{
+            let state = States.filter((item) => {
                 return item.state_code === data.state
             })
-    
+
             data.state = state[0]?.name;
-    
+
+            setDisable(true);
             let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users`, {
                 method: "POST",
                 body: JSON.stringify(data)
@@ -47,16 +49,19 @@ const FormPopup = ({ show, setShow }) => {
             if (result) {
                 toast.success('Your query successfully submited. Thanks!');
                 reset();
+                setDisable(false);
                 setShow(!show)
             }
             else {
                 console.log(result, '-----------result ');
                 console.log("===fail");
+                setDisable(false);
             }
         } catch (error) {
             console.log(error);
+            setDisable(false);
         }
-        
+
     };
 
     const onChangeState = async (name) => {
@@ -127,48 +132,11 @@ const FormPopup = ({ show, setShow }) => {
                 <div className='flex justify-between gap-5 mb-5'>
                     <div className='w-full'>
                         <div className='border-[#37474F] border-[1px] p-3 rounded-large flex justify-between mb-5 w-full md:p-5'>
-                            <select name="state" id="state" className='form-control outline-none bg-transparent text-[#CFD8DC] w-full'  {...register("state")} onChange={(e)=>onChangeState(e.target.value)}>
+                            <select name="state" id="state" className='form-control outline-none bg-transparent text-[#CFD8DC] w-full'  {...register("state")} onChange={(e) => onChangeState(e.target.value)}>
                                 <option className='bg-[#0B0F12]' value="">State</option>
                                 {States.map((item) => {
                                     return <option key={item?.state_code} className='bg-[#0B0F12]' value={item?.state_code}>{item?.name}</option>
                                 })}
-
-                                {/* <option className='bg-[#0B0F12]' value="Andhra Pradesh">Andhra Pradesh</option>
-                                <option className='bg-[#0B0F12]' value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                                <option className='bg-[#0B0F12]' value="Arunachal Pradesh">Arunachal Pradesh</option>
-                                <option className='bg-[#0B0F12]' value="Assam">Assam</option>
-                                <option className='bg-[#0B0F12]' value="Bihar">Bihar</option>
-                                <option className='bg-[#0B0F12]' value="Chandigarh">Chandigarh</option>
-                                <option className='bg-[#0B0F12]' value="Chhattisgarh">Chhattisgarh</option>
-                                <option className='bg-[#0B0F12]' value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
-                                <option className='bg-[#0B0F12]' value="Daman and Diu">Daman and Diu</option>
-                                <option className='bg-[#0B0F12]' value="Delhi">Delhi</option>
-                                <option className='bg-[#0B0F12]' value="Lakshadweep">Lakshadweep</option>
-                                <option className='bg-[#0B0F12]' value="Puducherry">Puducherry</option>
-                                <option className='bg-[#0B0F12]' value="Goa">Goa</option>
-                                <option className='bg-[#0B0F12]' value="Gujarat">Gujarat</option>
-                                <option className='bg-[#0B0F12]' value="Haryana">Haryana</option>
-                                <option className='bg-[#0B0F12]' value="Himachal Pradesh">Himachal Pradesh</option>
-                                <option className='bg-[#0B0F12]' value="Jammu and Kashmir">Jammu and Kashmir</option>
-                                <option className='bg-[#0B0F12]' value="Jharkhand">Jharkhand</option>
-                                <option className='bg-[#0B0F12]' value="Karnataka">Karnataka</option>
-                                <option className='bg-[#0B0F12]' value="Kerala">Kerala</option>
-                                <option className='bg-[#0B0F12]' value="Madhya Pradesh">Madhya Pradesh</option>
-                                <option className='bg-[#0B0F12]' value="Maharashtra">Maharashtra</option>
-                                <option className='bg-[#0B0F12]' value="Manipur">Manipur</option>
-                                <option className='bg-[#0B0F12]' value="Meghalaya">Meghalaya</option>
-                                <option className='bg-[#0B0F12]' value="Mizoram">Mizoram</option>
-                                <option className='bg-[#0B0F12]' value="Nagaland">Nagaland</option>
-                                <option className='bg-[#0B0F12]' value="Odisha">Odisha</option>
-                                <option className='bg-[#0B0F12]' value="Punjab">Punjab</option>
-                                <option className='bg-[#0B0F12]' value="Rajasthan">Rajasthan</option>
-                                <option className='bg-[#0B0F12]' value="Sikkim">Sikkim</option>
-                                <option className='bg-[#0B0F12]' value="Tamil Nadu">Tamil Nadu</option>
-                                <option className='bg-[#0B0F12]' value="Telangana">Telangana</option>
-                                <option className='bg-[#0B0F12]' value="Tripura">Tripura</option>
-                                <option className='bg-[#0B0F12]' value="Uttar Pradesh">Uttar Pradesh</option>
-                                <option className='bg-[#0B0F12]' value="Uttarakhand">Uttarakhand</option>
-                                <option className='bg-[#0B0F12]' value="West Bengal">West Bengal</option> */}
                             </select>
                         </div>
                         <p className='text-red-700'>{errors.state?.message}</p>
@@ -177,33 +145,16 @@ const FormPopup = ({ show, setShow }) => {
                         <div className='border-[#37474F] border-[1px] p-3 rounded-large flex justify-between mb-5 w-full md:p-5'>
                             <select name="state" id="state" className='form-control outline-none bg-transparent text-[#CFD8DC] w-full' {...register("city")}>
                                 <option className='bg-[#0B0F12]' value="">City</option>
-                                {cities.map((item)=>{
+                                {cities.map((item) => {
                                     return <option key={item?.name} className='bg-[#0B0F12]' value={item?.name}>	{item?.name}</option>
-                                }) }
-                                {/* <option className='bg-[#0B0F12]' value="Abohar">Abohar</option>
-                                <option className='bg-[#0B0F12]' value="Ludhiana">	Ludhiana</option>
-                                <option className='bg-[#0B0F12]' value="Amritsar">	Amritsar</option>
-                                <option className='bg-[#0B0F12]' value="Jalandhar">Jalandhar</option>
-                                <option className='bg-[#0B0F12]' value="Patiala">Patiala </option>
-                                <option className='bg-[#0B0F12]' value="Chandigarh">Chandigarh</option>
-                                <option className='bg-[#0B0F12]' value="	Bathinda">	Bathinda</option>
-                                <option className='bg-[#0B0F12]' value="	Mohali">	Mohali</option>
-                                <option className='bg-[#0B0F12]' value="Firozpur">Firozpur</option>
-                                <option className='bg-[#0B0F12]' value="	Gurdaspur">	Gurdaspur</option>
-                                <option className='bg-[#0B0F12]' value="Pathankot">Pathankot</option>
-                                <option className='bg-[#0B0F12]' value="Fazilka">Fazilka</option>
-                                <option className='bg-[#0B0F12]' value="	Muktsar">	Muktsar</option>
-                                <option className='bg-[#0B0F12]' value="	Faridkot">	Faridkot</option> */}
+                                })}
                             </select>
-
-
-                            {/* <Image src={'/down_arrow.svg'} alt="" height={7} width={12} className=''></Image> */}
                         </div>
                         <p className='text-red-700'>{errors.city?.message}</p>
                     </div>
                 </div>
                 <div className='py-13 border-t-[1px] border-[#37474F]'>
-                    <button type="submit" className='inline-block text-white bg-[#4946FF] hover:bg-[#4946ffc7] transition duration-500 py-[0.625rem] px-7 w-full text-center rounded-large whitespace-nowrap font-lato font-semibold text-[1rem] md:py-[0.875rem] md:font-medium md:text-xl'> Apply Now</button>
+                    <button disabled={disable} type="submit" className={`inline-block text-white bg-[#4946FF] hover:bg-[#4946ffc7] transition duration-500 py-[0.625rem] px-7 w-full text-center rounded-large whitespace-nowrap font-lato font-semibold text-[1rem] md:py-[0.875rem] md:font-medium md:text-xl ${disable === true ?'cursor-not-allowed	opacity-50	':''}`}> Apply Now</button>
                 </div>
                 <p className='font-lato text-[#B0BEC5] text-center text-[0.75rem] md:text-[1rem]'>Ultrices aliquet ipsum aliquet nec. Sit commodo adipiscing ullamcorper molestie aenean cursus bibendum risus nunc.</p>
             </form>
