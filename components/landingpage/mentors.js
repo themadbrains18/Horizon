@@ -18,7 +18,7 @@ const mentorCardData =[
         mentorLogo:"/logologo.svg",
         mentorName:'Baljeet Masih',
         mentorInfo:"Diam auctor tortor ultricies tortor.",
-        mentorProfession:"Director of Design 👩🏾‍💻",
+        mentorProfession:"Director of Development 👩🏾‍💻",
         brief:"Sed ac metus blandit ultrices. Rhoncus quis elementum nulla sit diam egestas. Gravida faucibus faucibus amet nunc fringilla sagittis phasellus. Eget massa donec interdum duis morbi pretium.  ",
         mentorImg:"/mentor-photo.png", 
         mentorImgMob:"/mentor-photo.png"
