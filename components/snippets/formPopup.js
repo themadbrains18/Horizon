@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import states from '../../states.json';
+import city from '../../cities.json';
 
 const schema = Yup.object().shape({
     // password: Yup.string().min(8).max(32).required("This Field is Required."),
@@ -23,21 +25,48 @@ const FormPopup = ({ show, setShow }) => {
         resolver: yupResolver(schema),
     });
 
+    const [cities, setCities] = useState([]);
+
+    let States = states.filter((item) => {
+        return item.country_code === 'IN'
+    })
+
     const onSubmitHandler = async (data) => {
-        let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users`, {
-            method: "POST",
-            body: JSON.stringify(data)
-        }).then(response => response.json())
-        if (result) {
-            toast.success('Your query successfully submited. Thanks!');
-            reset();
-            setShow(!show)
+
+        try {
+            let state = States.filter((item)=>{
+                return item.state_code === data.state
+            })
+    
+            data.state = state[0]?.name;
+    
+            let result = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/users`, {
+                method: "POST",
+                body: JSON.stringify(data)
+            }).then(response => response.json())
+            if (result) {
+                toast.success('Your query successfully submited. Thanks!');
+                reset();
+                setShow(!show)
+            }
+            else {
+                console.log(result, '-----------result ');
+                console.log("===fail");
+            }
+        } catch (error) {
+            console.log(error);
         }
-        else {
-            console.log(result,'-----------result ');
-            console.log("===fail");
-        }
+        
     };
+
+    const onChangeState = async (name) => {
+
+        let Cities = city.filter((item) => {
+            return item.state_code === `${name}` && item.country_code === 'IN'
+        })
+
+        setCities(Cities);
+    }
 
     return (
         <>
@@ -98,9 +127,13 @@ const FormPopup = ({ show, setShow }) => {
                 <div className='flex justify-between gap-5 mb-5'>
                     <div className='w-full'>
                         <div className='border-[#37474F] border-[1px] p-3 rounded-large flex justify-between mb-5 w-full md:p-5'>
-                            <select name="state" id="state" className='form-control outline-none bg-transparent text-[#CFD8DC] w-full'  {...register("state")}>
+                            <select name="state" id="state" className='form-control outline-none bg-transparent text-[#CFD8DC] w-full'  {...register("state")} onChange={(e)=>onChangeState(e.target.value)}>
                                 <option className='bg-[#0B0F12]' value="">State</option>
-                                <option className='bg-[#0B0F12]' value="Andhra Pradesh">Andhra Pradesh</option>
+                                {States.map((item) => {
+                                    return <option className='bg-[#0B0F12]' value={item?.state_code}>{item?.name}</option>
+                                })}
+
+                                {/* <option className='bg-[#0B0F12]' value="Andhra Pradesh">Andhra Pradesh</option>
                                 <option className='bg-[#0B0F12]' value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
                                 <option className='bg-[#0B0F12]' value="Arunachal Pradesh">Arunachal Pradesh</option>
                                 <option className='bg-[#0B0F12]' value="Assam">Assam</option>
@@ -135,7 +168,7 @@ const FormPopup = ({ show, setShow }) => {
                                 <option className='bg-[#0B0F12]' value="Tripura">Tripura</option>
                                 <option className='bg-[#0B0F12]' value="Uttar Pradesh">Uttar Pradesh</option>
                                 <option className='bg-[#0B0F12]' value="Uttarakhand">Uttarakhand</option>
-                                <option className='bg-[#0B0F12]' value="West Bengal">West Bengal</option>
+                                <option className='bg-[#0B0F12]' value="West Bengal">West Bengal</option> */}
                             </select>
                         </div>
                         <p className='text-red-700'>{errors.state?.message}</p>
@@ -144,7 +177,10 @@ const FormPopup = ({ show, setShow }) => {
                         <div className='border-[#37474F] border-[1px] p-3 rounded-large flex justify-between mb-5 w-full md:p-5'>
                             <select name="state" id="state" className='form-control outline-none bg-transparent text-[#CFD8DC] w-full' {...register("city")}>
                                 <option className='bg-[#0B0F12]' value="">City</option>
-                                <option className='bg-[#0B0F12]' value="Abohar">Abohar</option>
+                                {cities.map((item)=>{
+                                    return <option className='bg-[#0B0F12]' value={item?.name}>	{item?.name}</option>
+                                }) }
+                                {/* <option className='bg-[#0B0F12]' value="Abohar">Abohar</option>
                                 <option className='bg-[#0B0F12]' value="Ludhiana">	Ludhiana</option>
                                 <option className='bg-[#0B0F12]' value="Amritsar">	Amritsar</option>
                                 <option className='bg-[#0B0F12]' value="Jalandhar">Jalandhar</option>
@@ -157,7 +193,7 @@ const FormPopup = ({ show, setShow }) => {
                                 <option className='bg-[#0B0F12]' value="Pathankot">Pathankot</option>
                                 <option className='bg-[#0B0F12]' value="Fazilka">Fazilka</option>
                                 <option className='bg-[#0B0F12]' value="	Muktsar">	Muktsar</option>
-                                <option className='bg-[#0B0F12]' value="	Faridkot">	Faridkot</option>
+                                <option className='bg-[#0B0F12]' value="	Faridkot">	Faridkot</option> */}
                             </select>
 
 
