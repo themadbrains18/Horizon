@@ -34,6 +34,7 @@ const FormPopup = ({ show, setShow }) => {
             setShow(!show)
         }
         else {
+            console.log(result,'-----------result ');
             console.log("===fail");
         }
     };
