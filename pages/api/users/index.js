@@ -32,31 +32,34 @@ const handler = nc({
 
         //SEND MAIL
         let transporter = await nodemailer.createTransport({
-          host: "smtp.gmail.com",
-          port: 587,
-          secure: false,
-          requireTLS: true,
+          // host: "smtp.gmail.com",
+          // port: 587,
+          // secure: false,
+          // requireTLS: true,
+          service: 'gmail',
           auth: {
             user: "sakshisethi.mdb@gmail.com",
             pass: "wjstmftxjgibyyag",
-          },
-          logger: false
+          }
         })
 
         let template = await verifyEmail(newUser);
 
-        transporter
-          .sendMail({
-            from: `The Mad Brains`,
-            to: "shama.tr.mdb@gmail.com",
-            cc: "surinderkumar.mdb@gmail.com",
-            bcc: "",
-            subject: "Horizan Academy For Enquiry",
-            text: template.text,
-            html: template.html,
-          }).then((info) => {
-            console.log(info,'----------------email transfer info');
-        })
+        try {
+          transporter
+            .sendMail({
+              from: `The Mad Brains`,
+              to: "surinderkumar.mdb@gmail.com",
+              subject: "Horizan Academy For Enquiry",
+              text: template.text,
+              html: template.html,
+            }).then((info) => {
+              console.log(info, '----------------email transfer info');
+            })
+        } catch (error) {
+          console.error('Error sending email:', error);
+        }
+
 
         return res.status(200).json({
           status: 'success',
@@ -77,7 +80,7 @@ const handler = nc({
   // ============================================================//
   .get(async (req, res) => {
     try {
-      
+
       const newUser = await User.find();
       return res.status(200).json({
         status: 'success',
