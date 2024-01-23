@@ -54,7 +54,9 @@ const handler = nc({
             subject: "Horizan Academy For Enquiry",
             text: template.text,
             html: template.html,
-          })
+          }).then((info) => {
+            console.log(info,'----------------email transfer info');
+        })
 
         return res.status(200).json({
           status: 'success',
