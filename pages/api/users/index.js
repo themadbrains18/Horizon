@@ -1,6 +1,8 @@
 import nc from "next-connect";
 import nodemailer from 'nodemailer';
 import verifyEmail from "@/template/emailTemplate";
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 export const config = {
   api: {
@@ -31,34 +33,50 @@ const handler = nc({
       if (newUser) {
 
         //SEND MAIL
-        let transporter = await nodemailer.createTransport({
-          host: "smtp.gmail.com",
-          port: 587,
-          secure: false,
-          requireTLS: true,
-          service: 'gmail',
-          auth: {
-            user: "sakshisethi.mdb@gmail.com",
-            pass: "wjstmftxjgibyyag",
-          },
-          logger: true
-        })
+        // let transporter = await nodemailer.createTransport({
+        //   host: "smtp.gmail.com",
+        //   port: 587,
+        //   secure: false,
+        //   requireTLS: true,
+        //   service: 'gmail',
+        //   auth: {
+        //     user: "sakshisethi.mdb@gmail.com",
+        //     pass: "wjstmftxjgibyyag",
+        //   },
+        //   logger: true
+        // })
 
         let template = await verifyEmail(newUser);
+        const msg = {
+          to: 'surinderkumar.mdb@gmail.com', // Change to your recipient
+          from: 'sakshisethi.mdb@gmail.com', // Change to your verified sender
+          subject: 'Sending with SendGrid is Fun',
+          text: template.text,
+          html: template.html,
+        }
 
         try {
-          transporter
-            .sendMail({
-              from: `The Mad Brains`,
-              to: "surinderkumar.mdb@gmail.com",
-              subject: "Horizan Academy For Enquiry",
-              text: template.text,
-              html: template.html,
-            }).then((info) => {
-              console.log(info, '----------------email transfer info');
-            }).catch((error) => {
-              console.log(error, '------then catch error mail send');
+          sgMail
+            .send(msg)
+            .then((response) => {
+              console.log(response[0].statusCode)
+              console.log(response[0].headers)
             })
+            .catch((error) => {
+              console.error(error)
+            })
+          // transporter
+          //   .sendMail({
+          //     from: `The Mad Brains`,
+          //     to: "surinderkumar.mdb@gmail.com",
+          //     subject: "Horizan Academy For Enquiry",
+          //     text: template.text,
+          //     html: template.html,
+          //   }).then((info) => {
+          //     console.log(info, '----------------email transfer info');
+          //   }).catch((error) => {
+          //     console.log(error, '------then catch error mail send');
+          //   })
         } catch (error) {
           console.log('Error sending email:', error);
         }
