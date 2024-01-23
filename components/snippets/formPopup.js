@@ -46,16 +46,25 @@ const FormPopup = ({ show, setShow }) => {
                 method: "POST",
                 body: JSON.stringify(data)
             }).then(response => response.json())
-            if (result) {
+            if (result?.status === 'success') {
                 toast.success('Your query successfully submited. Thanks!');
                 reset();
                 setDisable(false);
                 setShow(!show)
             }
             else {
-                console.log(result, '-----------result ');
-                console.log("===fail");
-                setDisable(false);
+                if (result?.status === 'error') {
+                    toast.error(result?.message);
+                    reset();
+                    setDisable(false);
+                    setShow(!show)
+                }
+                else {
+                    toast.error('Something Wrong!');
+                    reset();
+                    setDisable(false);
+                    setShow(!show)
+                }
             }
         } catch (error) {
             console.log(error);
@@ -154,7 +163,7 @@ const FormPopup = ({ show, setShow }) => {
                     </div>
                 </div>
                 <div className='py-13 border-t-[1px] border-[#37474F]'>
-                    <button disabled={disable} type="submit" className={`inline-block text-white bg-[#4946FF] hover:bg-[#4946ffc7] transition duration-500 py-[0.625rem] px-7 w-full text-center rounded-large whitespace-nowrap font-lato font-semibold text-[1rem] md:py-[0.875rem] md:font-medium md:text-xl ${disable === true ?'cursor-not-allowed	opacity-50	':''}`}> Apply Now</button>
+                    <button disabled={disable} type="submit" className={`inline-block text-white bg-[#4946FF] hover:bg-[#4946ffc7] transition duration-500 py-[0.625rem] px-7 w-full text-center rounded-large whitespace-nowrap font-lato font-semibold text-[1rem] md:py-[0.875rem] md:font-medium md:text-xl ${disable === true ? 'cursor-not-allowed	opacity-50	' : ''}`}> Apply Now</button>
                 </div>
                 <p className='font-lato text-[#B0BEC5] text-center text-[0.75rem] md:text-[1rem]'>Ultrices aliquet ipsum aliquet nec. Sit commodo adipiscing ullamcorper molestie aenean cursus bibendum risus nunc.</p>
             </form>

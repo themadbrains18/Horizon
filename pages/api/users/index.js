@@ -2,10 +2,6 @@ import nc from "next-connect";
 // import nodemailer from 'nodemailer';
 import verifyEmail from "@/template/emailTemplate";
 
-import { Resend } from 'resend';
-
-const resend = new Resend('re_NHqfT5qA_B6f3yCJKU4986MGf6Rrz8QNv');
-
 export const config = {
   api: {
     bodyParser: true, // Disallow body parsing, consume as stream
@@ -16,6 +12,7 @@ const connectDB = require("../../../lib/db/models/index");
 
 const User = require('../../../lib/db/models/user.model');
 connectDB();
+
 const handler = nc({
   onError: (err, req, res, next) => {
     console.error(err.stack);
@@ -30,7 +27,18 @@ const handler = nc({
   // ============================================================//
   .post(async (req, res) => {
     try {
-      const newUser = await User.create(JSON.parse(req.body));
+
+      let body = JSON.parse(req.body);
+
+      let existUser = await User.findOne({ email: body.email });
+
+      if (existUser) {
+        return res.status(500).json({
+          status: 'error',
+          message: 'User already exist'
+        });
+      }
+      const newUser = await User.create(body);
 
       if (newUser) {
 
@@ -68,27 +76,22 @@ const handler = nc({
           if (res.ok) {
             const data = await res.json();
           }
-          else{
+          else {
             console.log(res);
           }
-          // await resend.emails.send({
-          //   from: 'onboarding@resend.dev',
-          //   to: 'surinderkumar.mdb@gmail.com',
-          //   subject: "Horizan Academy For Enquiry",
-          //   html: template.html
-          // });
-          // transporter
-          //   .sendMail({
-          //     from: `The Mad Brains`,
-          //     to: "surinderkumar.mdb@gmail.com",
-          //     subject: "Horizan Academy For Enquiry",
-          //     text: template.text,
-          //     html: template.html,
-          //   }).then((info) => {
-          //     console.log(info, '----------------email transfer info');
-          //   }).catch((error) => {
-          //     console.log(error, '------then catch error mail send');
-          //   })
+
+          //   // transporter
+          //   //   .sendMail({
+          //   //     from: `The Mad Brains`,
+          //   //     to: "surinderkumar.mdb@gmail.com",
+          //   //     subject: "Horizan Academy For Enquiry",
+          //   //     text: template.text,
+          //   //     html: template.html,
+          //   //   }).then((info) => {
+          //   //     console.log(info, '----------------email transfer info');
+          //   //   }).catch((error) => {
+          //   //     console.log(error, '------then catch error mail send');
+          //   //   })
         } catch (error) {
           console.log('Error sending email:', error);
         }
