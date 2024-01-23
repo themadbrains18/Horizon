@@ -161,6 +161,18 @@ const verifyEmail = function (newUser) {
                                 </div>
                                 <div style="margin-bottom : 5px">
                                   <span 
+                                    >Course:&nbsp;</span
+                                  ><span
+                                  style="
+                                  color: #5367FF;
+                                  font-size: 15px;
+                                  margin-bottom : 10px;
+                                "
+                                    >${newUser?.course}</span
+                                  >
+                                </div>
+                                <div style="margin-bottom : 5px">
+                                  <span 
                                     >State:&nbsp;</span
                                   ><span
                                   style="
