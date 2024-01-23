@@ -24,6 +24,7 @@
     "react-hook-form": "^7.43.9",
     "react-tabs": "^6.0.0",
     "react-toastify": "^10.0.4",
+    "resend": "^3.1.0",
     "sequelize": "^6.30.0",
     "sharp": "^0.32.0",
     "yarn": "^1.22.19",

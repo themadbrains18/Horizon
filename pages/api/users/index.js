@@ -1,8 +1,10 @@
 import nc from "next-connect";
-import nodemailer from 'nodemailer';
+// import nodemailer from 'nodemailer';
 import verifyEmail from "@/template/emailTemplate";
-const sgMail = require('@sendgrid/mail')
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+
+import { Resend } from 'resend';
+
+const resend = new Resend('re_NHqfT5qA_B6f3yCJKU4986MGf6Rrz8QNv');
 
 export const config = {
   api: {
@@ -47,24 +49,14 @@ const handler = nc({
         // })
 
         let template = await verifyEmail(newUser);
-        const msg = {
-          to: 'surinderkumar.mdb@gmail.com', // Change to your recipient
-          from: 'sakshisethi.mdb@gmail.com', // Change to your verified sender
-          subject: 'Sending with SendGrid is Fun',
-          text: template.text,
-          html: template.html,
-        }
 
         try {
-          sgMail
-            .send(msg)
-            .then((response) => {
-              console.log(response[0].statusCode)
-              console.log(response[0].headers)
-            })
-            .catch((error) => {
-              console.error(error)
-            })
+          resend.emails.send({
+            from: 'onboarding@resend.dev',
+            to: 'surinderkumar.mdb@gmail.com',
+            subject: "Horizan Academy For Enquiry",
+            html: template.html
+          });
           // transporter
           //   .sendMail({
           //     from: `The Mad Brains`,
