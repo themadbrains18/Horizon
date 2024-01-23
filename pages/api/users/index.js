@@ -58,10 +58,10 @@ const handler = nc({
               'Authorization': `Bearer re_NHqfT5qA_B6f3yCJKU4986MGf6Rrz8QNv`,
             },
             body: JSON.stringify({
-              from: 'Acme <onboarding@resend.dev>',
+              from: 'Horizon Academy <onboarding@resend.dev>',
               to: ['surinderkumar.mdb@gmail.com'],
-              subject: 'hello world',
-              html: '<strong>it works!</strong>',
+              subject: "Horizan Academy For Enquiry",
+              html: template.html,
             }),
           });
 
