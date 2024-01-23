@@ -36,7 +36,7 @@ const handler = nc({
           port: 587,
           secure: false,
           requireTLS: true,
-          // service: 'gmail',
+          service: 'gmail',
           auth: {
             user: "sakshisethi.mdb@gmail.com",
             pass: "wjstmftxjgibyyag",
