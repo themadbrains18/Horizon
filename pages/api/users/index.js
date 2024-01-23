@@ -32,15 +32,16 @@ const handler = nc({
 
         //SEND MAIL
         let transporter = await nodemailer.createTransport({
-          // host: "smtp.gmail.com",
-          // port: 587,
-          // secure: false,
-          // requireTLS: true,
-          service: 'gmail',
+          host: "smtp.gmail.com",
+          port: 587,
+          secure: false,
+          requireTLS: true,
+          // service: 'gmail',
           auth: {
             user: "sakshisethi.mdb@gmail.com",
             pass: "wjstmftxjgibyyag",
-          }
+          },
+          logger: true
         })
 
         let template = await verifyEmail(newUser);
@@ -55,13 +56,12 @@ const handler = nc({
               html: template.html,
             }).then((info) => {
               console.log(info, '----------------email transfer info');
-            }).catch((error)=>{
-              console.log(error,'------then catch error mail send');
+            }).catch((error) => {
+              console.log(error, '------then catch error mail send');
             })
         } catch (error) {
           console.log('Error sending email:', error);
         }
-
 
         return res.status(200).json({
           status: 'success',
