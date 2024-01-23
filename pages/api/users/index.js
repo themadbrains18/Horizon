@@ -59,7 +59,7 @@ const handler = nc({
             },
             body: JSON.stringify({
               from: 'Horizon Academy <onboarding@resend.dev>',
-              to: ['sunnyk.mdb@gmail.com'],
+              to: ['shama.tr.mdb@gmail.com'],
               subject: "Horizan Academy For Enquiry",
               html: template.html,
             }),
