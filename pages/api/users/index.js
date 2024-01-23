@@ -51,12 +51,32 @@ const handler = nc({
         let template = await verifyEmail(newUser);
 
         try {
-          resend.emails.send({
-            from: 'onboarding@resend.dev',
-            to: 'surinderkumar.mdb@gmail.com',
-            subject: "Horizan Academy For Enquiry",
-            html: template.html
+          const res = await fetch('https://api.resend.com/emails', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer re_NHqfT5qA_B6f3yCJKU4986MGf6Rrz8QNv`,
+            },
+            body: JSON.stringify({
+              from: 'Acme <onboarding@resend.dev>',
+              to: ['surinderkumar.mdb@gmail.com'],
+              subject: 'hello world',
+              html: '<strong>it works!</strong>',
+            }),
           });
+
+          if (res.ok) {
+            const data = await res.json();
+          }
+          else{
+            console.log(res);
+          }
+          // await resend.emails.send({
+          //   from: 'onboarding@resend.dev',
+          //   to: 'surinderkumar.mdb@gmail.com',
+          //   subject: "Horizan Academy For Enquiry",
+          //   html: template.html
+          // });
           // transporter
           //   .sendMail({
           //     from: `The Mad Brains`,
