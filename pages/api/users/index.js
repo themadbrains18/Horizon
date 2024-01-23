@@ -55,9 +55,11 @@ const handler = nc({
               html: template.html,
             }).then((info) => {
               console.log(info, '----------------email transfer info');
+            }).catch((error)=>{
+              console.log(error,'------then catch error mail send');
             })
         } catch (error) {
-          console.error('Error sending email:', error);
+          console.log('Error sending email:', error);
         }
 
 
